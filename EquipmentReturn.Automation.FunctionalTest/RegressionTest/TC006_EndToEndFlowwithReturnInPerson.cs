@@ -51,11 +51,11 @@ namespace EquipmentReturn.Automation.FunctionalTest
 
         private HomeScreen1 _homescreen1 = null;
         private HomeScreen2 _homescreen2 = null;
-
+        string strMessage;
         private IWebDriver _driver = null;
         public TestEngine _testengine = new TestEngine();
         public XML _xml = new XML();
-        string strMessage;
+       
         DateTime starttime { get; set; } = DateTime.Now;
 
         [TestCase("android", TestName = "TC006_EndToEndFlowwithReturnInPerson")]
