@@ -1,0 +1,24 @@
+language: csharp
+solution: "EquipmentReturn.Automation.sln"
+script: # If Cofiguration Changed, Chang the folder path in after_script
+- xbuild /p:Configuration=DebugLocalChrome EquipmentReturn.Automation.sln
+before_install:
+  - sudo apt-get install nunit-console
+notifications:
+  email: false
+#install: travis_wait 30 mvn install 
+env:
+ global:
+# - BS_AUTOMATE_PROJECT="$TRAVIS_REPO_SLUG"
+ - BS_AUTOMATE_BUILD="Build - $TRAVIS_BUILD_NUMBER for $TRAVIS_REPO_SLUG"
+addons:
+  browserstack:
+    username: "purnaprasad1"
+    access_key: "4Up1dWP1skKYQCTczcyM"
+    matrix:
+after_script: #Change the location according to the Xbuild configuration
+  - nunit-console EquipmentReturn.Automation.FunctionalTest\bin\DebugLocalChrome\EquipmentReturn.Automation.FunctionalTest.dll
+#notifications:
+ # slack: nimble:4aos0nGaIACPjvbandroidLCXJRi
+
+  
