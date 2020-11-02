@@ -1,0 +1,1 @@
+C:\nimble-ui-automation\obj\Debug\Repoter.csprojResolveAssemblyReference.cache
