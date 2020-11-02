@@ -11,9 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquipmentReturn.Automation.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquipmentReturn.Automation.Repository", "EquipmentReturn.Automation.Repository\EquipmentReturn.Automation.Repository.csproj", "{ABCCDC77-48B3-4DB4-A758-B5C50FAA3FA8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C9821D9F-B438-4A36-82EA-5F009D611613}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{C9821D9F-B438-4A36-82EA-5F009D611613}"
 	ProjectSection(SolutionItems) = preProject
-		C:\Users\7504723\Downloads\nimble-ui-automation\.travis.yml = C:\Users\7504723\Downloads\nimble-ui-automation\.travis.yml
+		..\..\..\Downloads\nimble-ui-automation\.travis.yml = ..\..\..\Downloads\nimble-ui-automation\.travis.yml
 	EndProjectSection
 EndProject
 Global
