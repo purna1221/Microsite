@@ -223,12 +223,6 @@
   <ItemGroup>
     <Content Include="extent-config.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Repoter\Repoter\Repoter.csproj">
-      <Project>{c7b6dc37-d29a-4ce3-a80c-795c85df66b6}</Project>
-      <Name>Repoter</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

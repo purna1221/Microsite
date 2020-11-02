@@ -196,10 +196,6 @@
       <Project>{abccdc77-48b3-4db4-a758-b5c50faa3fa8}</Project>
       <Name>EquipmentReturn.Automation.Repository</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Repoter\Repoter\Repoter.csproj">
-      <Project>{C7B6DC37-D29A-4CE3-A80C-795C85DF66B6}</Project>
-      <Name>Repoter</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="extent-config.xml" />

@@ -16,7 +16,6 @@ using System.IO;
 using System.Reflection;
 using System.Threading;
 using OpenQA.Selenium.Support.Extensions;
-using Repoter;
 
 namespace EquipmentReturn.Automation.Accelerators
 {
@@ -75,7 +74,7 @@ namespace EquipmentReturn.Automation.Accelerators
         private bool configurationbool;
 
         /*Report*/
-        public CReporter reporter = null;
+       // public CReporter reporter = null;
 
         public enum browsertype
         {
