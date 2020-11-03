@@ -13,8 +13,8 @@ env:
  - BS_AUTOMATE_BUILD="Build - $TRAVIS_BUILD_NUMBER for $TRAVIS_REPO_SLUG"
 addons:
   browserstack:
-    username: "purnaprasad1"
-    access_key: "4Up1dWP1skKYQCTczcyM"
+    username: "accounttest3"
+    access_key: "3paXxyCRAwWYpE2GURMx"
     matrix:
 after_script: #Change the location according to the Xbuild configuration
   - nunit-console EquipmentReturn.Automation.FunctionalTest\bin\DebugBSChrome\EquipmentReturn.Automation.FunctionalTest.dll
