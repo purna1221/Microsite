@@ -220,10 +220,10 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Content Include="extent-config.xml" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="..\packages\Selenium.Chrome.WebDriver.2.45\build\Selenium.Chrome.WebDriver.targets" Condition="Exists('..\packages\Selenium.Chrome.WebDriver.2.45\build\Selenium.Chrome.WebDriver.targets')" />
   <Import Project="..\packages\NuGet.VisualStudio.4.9.4\build\NuGet.VisualStudio.targets" Condition="Exists('..\packages\NuGet.VisualStudio.4.9.4\build\NuGet.VisualStudio.targets')" />
   <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.84.0.4147.3001\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.84.0.4147.3001\build\Selenium.WebDriver.ChromeDriver.targets')" />
