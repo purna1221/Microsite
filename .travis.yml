@@ -1,7 +1,7 @@
 language: csharp
 solution: "EquipmentReturn.Automation.sln"
 script: # If Cofiguration Changed, Chang the folder path in after_script
-- xbuild /p:Configuration=DebugLocalChrome EquipmentReturn.Automation.sln
+- xbuild /p:Configuration=DebugBSChrome EquipmentReturn.Automation.sln
 before_install:
   - sudo apt-get install nunit-console
 notifications:
@@ -17,7 +17,7 @@ addons:
     access_key: "4Up1dWP1skKYQCTczcyM"
     matrix:
 after_script: #Change the location according to the Xbuild configuration
-  - nunit-console EquipmentReturn.Automation.FunctionalTest\bin\DebugLocalChrome\EquipmentReturn.Automation.FunctionalTest.dll
+  - nunit-console EquipmentReturn.Automation.FunctionalTest\bin\DebugBSChrome\EquipmentReturn.Automation.FunctionalTest.dll
 #notifications:
  # slack: nimble:4aos0nGaIACPjvbandroidLCXJRi
 
