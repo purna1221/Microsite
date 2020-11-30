@@ -100,10 +100,10 @@ namespace EquipmentReturn.Automation.Accelerators
             DebugLocalMobile(strMobileDevice);
             DebugLocalChrome();
 
-            driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(180));
+            //driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(180));
             VerifyPageIsLoaded();
             driver.Navigate().GoToUrl(WebuiURL);
-
+            ExtentReport.ReportPass("Successfully navigated to URL " + WebuiURL);
             // Update Env build and browser in DB
             ResultDbHelper _result = new ResultDbHelper();
             //_result.UpdateEnvdetails(Env, Browser, "");
@@ -189,7 +189,7 @@ namespace EquipmentReturn.Automation.Accelerators
                 chrOpts.AddUserProfilePreference("download.prompt_for_download", ConfigurationManager.AppSettings["ShowBrowserDownloadPrompt"]);
                 driver = new ChromeDriver(chrOpts);
                 driver.Manage().Window.Maximize();
-                driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(Convert.ToInt32(ConfigurationManager.AppSettings.Get("ElementPageLoad"))));
+                //driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(Convert.ToInt32(ConfigurationManager.AppSettings.Get("ElementPageLoad"))));
                 ExtentReport.StartTest(TestContext.CurrentContext.Test.Name);
 
             }

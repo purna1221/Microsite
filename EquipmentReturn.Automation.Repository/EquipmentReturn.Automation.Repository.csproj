@@ -177,8 +177,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helper\AskNowPage.cs" />
     <Compile Include="Helper\HomeScreen1.cs" />
     <Compile Include="Helper\HomeScreen2.cs" />
+    <Compile Include="Locators\AskNowLoc.cs" />
     <Compile Include="Locators\FormScreen1Loc.cs" />
     <Compile Include="Locators\FormScreen2Loc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

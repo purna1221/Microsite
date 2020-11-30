@@ -70,9 +70,11 @@ namespace EquipmentReturn.Automation.Repository.Locators
 
         By OracleIDNotFoundPopUp { get; }
 
-         By PopupContinueBtn { get; }
+        By PopupContinueBtn { get; }
 
-         By PopupCorrectBtn { get; }
+        By PopupCorrectBtn { get; }
+
+        By ReqNumber { get; }
     }
 
     public class FormScreen1DesktopLoc : IFormScreen1
@@ -119,7 +121,7 @@ namespace EquipmentReturn.Automation.Repository.Locators
 
         public By City => By.XPath("//input[@id='city']");
 
-        public By StateCode => By.XPath("//select[@id='stateCode']"); 
+        public By StateCode => By.XPath("//select[@id='stateCode']");
 
         public By CountryCode => By.XPath("//select[@id='countryCode']");
 
@@ -156,6 +158,10 @@ namespace EquipmentReturn.Automation.Repository.Locators
         public By PopupContinueBtn => By.XPath("//button[@id='Continue']");
 
         public By PopupCorrectBtn => By.XPath("//button[@id='Correct']");
+
+        //Request Number
+
+        public By ReqNumber => By.XPath("//span[@id='ErrorText']");
     }
 
     public class FormScreen1MobileLoc : IFormScreen1
@@ -239,5 +245,9 @@ namespace EquipmentReturn.Automation.Repository.Locators
         public By PopupContinueBtn => By.XPath("//button[@id='Continue']");
 
         public By PopupCorrectBtn => By.XPath("//button[@id='Correct']");
+
+        //Request Number
+
+        public By ReqNumber => By.XPath("//span[@id='ErrorText']");
     }
 }
