@@ -69,7 +69,7 @@ namespace EquipmentReturn.Automation.Repository
         public void EnterEmpID(string empid)
         {
             _act.waitForVisibilityOfElement(_homescreen1Loc.EmployeeID, 30);
-            _act.EnterText(_homescreen1Loc.EmployeeID, empid);
+            _act.EnterText(_homescreen1Loc.EmployeeID, empid, "EmployeeID");
         }
 
         public void PressTabonEmpID()
@@ -77,34 +77,64 @@ namespace EquipmentReturn.Automation.Repository
             _act.EnterTab(_homescreen1Loc.EmployeeID);
         }
 
+        public string GetFirstNameText()
+        {
+            string firstnameval = _act.getValue(_homescreen1Loc.FirstName, "FirstName");
+            return firstnameval;
+        }
+
+        public string GetLastNameText()
+        {
+            string lastnameval = _act.getValue(_homescreen1Loc.LastName, "LastName");
+            return lastnameval;
+        }
+
+        public string GetEmailText()
+        {
+            string emailval = _act.getValue(_homescreen1Loc.Email, "Email");
+            return emailval;
+        }
+
+        public string GetPhoneNumberText()
+        {
+            string phonenumberval = _act.getValue(_homescreen1Loc.Phone, "Phone");
+            return phonenumberval;
+        }
+
+        public string GetRequestNumber()
+        {
+            string phonenumberval = _act.getValue(_homescreen1Loc.Phone, "Phone");
+            return phonenumberval;
+        }
+
         public void EnterFirstName(string fname)
         {
             _act.waitForVisibilityOfElement(_homescreen1Loc.FirstName, 30);
-            _act.EnterText(_homescreen1Loc.FirstName, fname);
+            _act.EnterText(_homescreen1Loc.FirstName, fname, "FirstName");
         }
 
         public void EnterLastName(string lname)
         {
             _act.waitForVisibilityOfElement(_homescreen1Loc.LastName, 30);
-            _act.EnterText(_homescreen1Loc.LastName, lname);
+            _act.EnterText(_homescreen1Loc.LastName, lname, "LastName");
         }
 
         public void EnterPersonalEmail(string email)
         {
             _act.waitForVisibilityOfElement(_homescreen1Loc.Email, 30);
-            _act.EnterText(_homescreen1Loc.Email, email);
+            _act.EnterText(_homescreen1Loc.Email, email, "Email");
         }
 
         public void EnterPhoneNumber(string phone)
         {
             _act.waitForVisibilityOfElement(_homescreen1Loc.Phone, 30);
-            _act.EnterText(_homescreen1Loc.Phone, phone);
+            _act.EnterText(_homescreen1Loc.Phone, phone, "Phone");
         }
 
         public void EnterDate(string date)
         {
             _act.waitForVisibilityOfElement(_homescreen1Loc.Date, 30);
-            _act.EnterText(_homescreen1Loc.Date, date);
+            _act.EnterText(_homescreen1Loc.Date, date,"Date");
         }
 
         public void SelectTime(string time)
@@ -140,19 +170,19 @@ namespace EquipmentReturn.Automation.Repository
         public void EnterAddressLine1(string addressline1)
         {
             _act.waitForVisibilityOfElement(_homescreen1Loc.AddressLine1, 30);
-            _act.EnterText(_homescreen1Loc.AddressLine1, addressline1);
+            _act.EnterText(_homescreen1Loc.AddressLine1, addressline1, "AddressLine1");
         }
 
         public void EnterAddressLine2(string addressline2)
         {
             _act.waitForVisibilityOfElement(_homescreen1Loc.AddressLine2, 30);
-            _act.EnterText(_homescreen1Loc.AddressLine2, addressline2);
+            _act.EnterText(_homescreen1Loc.AddressLine2, addressline2, "AddressLine2");
         }
 
         public void EnterCity(string city)
         {
             _act.waitForVisibilityOfElement(_homescreen1Loc.City, 30);
-            _act.EnterText(_homescreen1Loc.City, city);
+            _act.EnterText(_homescreen1Loc.City, city,"City");
         }
 
         public void SelectState(string statecode)
@@ -170,7 +200,7 @@ namespace EquipmentReturn.Automation.Repository
         public void EnterZipcode(string zipcode)
         {
             _act.waitForVisibilityOfElement(_homescreen1Loc.ZipCode, 30);
-            _act.EnterText(_homescreen1Loc.ZipCode, zipcode);
+            _act.EnterText(_homescreen1Loc.ZipCode, zipcode,"ZipCode");
         }
 
         public void ClickVerifyPhnBtn()
@@ -213,7 +243,7 @@ namespace EquipmentReturn.Automation.Repository
                 Console.Write(ex.Message);
             }
             return verificationcode;
-        }
+        }     
 
         public string FetchVerificationCode()
         {
@@ -242,10 +272,23 @@ namespace EquipmentReturn.Automation.Repository
             return verificationcode;
         }
 
+        public string FetchREQNumber()
+        {
+            IWebElement errortext = _driver.FindElement(_homescreen1Loc.ReqNumber);
+
+            string[] errortextarray = errortext.Text.Split(')');
+
+            string[] errortextsplited = errortextarray[0].Split('(');
+
+            string reqnum = errortextsplited[1];
+
+            return reqnum;
+        }
+
         public void EnterOTP(string otp)
         {
             _act.waitForVisibilityOfElement(_homescreen1Loc.UserOTPTextbox, 30);
-            _act.EnterText(_homescreen1Loc.UserOTPTextbox, otp);
+            _act.EnterText(_homescreen1Loc.UserOTPTextbox, otp, "UserOTPTextbox");
         }
 
         public void ClickSubmitOTPBtn()

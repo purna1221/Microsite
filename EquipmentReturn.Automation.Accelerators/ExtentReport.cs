@@ -38,6 +38,7 @@ namespace EquipmentReturn.Automation.Accelerators
                 //deletefile();
                 reportPath = Path.Combine(ResultsPath, "EquipmentReturnReport-" + date + ".html");
                 screenshotPath = Path.Combine(ResultsPath);
+                Directory.CreateDirectory(ResultsPath);
                 string hostName = System.Net.Dns.GetHostName();
                 ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(reportPath);
                 htmlReporter.Configuration().Theme = Theme.Dark;
@@ -49,7 +50,7 @@ namespace EquipmentReturn.Automation.Accelerators
                 extent = new ExtentReports();
                 extent.AddSystemInfo("Host Name", hostName);
                 extent.AddSystemInfo("Environment", "Non Production");
-                extent.AddSystemInfo("Username", "TTEC IT - QA Team");
+                extent.AddSystemInfo("Tester", "Purna Mutyala(TTEC IT - QA Team)");
                 extent.AttachReporter(htmlReporter);
             }
             catch (Exception e)
@@ -61,10 +62,10 @@ namespace EquipmentReturn.Automation.Accelerators
         {
 
         }
-        public static void StartTest(string xyz)
+        public static void StartTest(string testname)
         {
             if (Convert.ToBoolean(ConfigurationManager.AppSettings["DisableExtentReport"])) { return; }
-            test = extent.CreateTest(xyz);
+            test = extent.CreateTest(testname);
 
         }
         public static void ReportPass(string Stepname)
@@ -73,7 +74,6 @@ namespace EquipmentReturn.Automation.Accelerators
             try
             {
                 test.Pass(Stepname);
-
             }
             catch (Exception e)
             {
@@ -87,7 +87,6 @@ namespace EquipmentReturn.Automation.Accelerators
             try
             {
                 test.Fail(Stepname);
-
             }
             catch (Exception e)
             {

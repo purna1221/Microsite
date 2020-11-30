@@ -13,9 +13,10 @@ using ExpectedConditions = OpenQA.Selenium.Support.UI.ExpectedConditions;
 using JavascriptExecutor = OpenQA.Selenium.IJavaScriptExecutor;
 using NoAlertPresentException = OpenQA.Selenium.NoAlertPresentException;
 using Select = OpenQA.Selenium.Support.UI.SelectElement;
-using WebDriverWait = OpenQA.Selenium.Support.UI.WebDriverWait;
+//using WebDriverWait = OpenQA.Selenium.Support.UI.WebDriverWait;
 //using OutputType = OpenQA.Selenium.OutputType;
 using WebElement = OpenQA.Selenium.IWebElement;
+using OpenQA.Selenium.Support.UI;
 
 namespace EquipmentReturn.Automation.Accelerators
 {
@@ -49,7 +50,7 @@ namespace EquipmentReturn.Automation.Accelerators
                 System.Drawing.Imaging.ImageFormat format = System.Drawing.Imaging.ImageFormat.Jpeg;
                 ((ITakesScreenshot)driver).GetScreenshot().SaveAsFile(Path.Combine(projectLoc, TestContext.CurrentContext.Test.Name + "-" + DateTime.Now.ToString("dd-M-yyyy", CultureInfo.InvariantCulture) + "." + format), format);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 //Catch but lets not fail and muddy the results
                 return false;
@@ -90,10 +91,12 @@ namespace EquipmentReturn.Automation.Accelerators
                 // driver.FindElement(locator).Click();
                 //js.ExecuteScript("arguments[0].click();", webElement);
                 //flag = true;
+                ExtentReport.ReportPass("The Element <b>" + locatorName + "</b> Click Successfull");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                TakeScreenShot();
+                //TakeScreenShot();
+                ExtentReport.ReportPass("The Element <b>" + locatorName + "</b> Click Failed :" + ex.Message);
                 return flag;
             }
             return flag;
@@ -255,20 +258,22 @@ namespace EquipmentReturn.Automation.Accelerators
 
         }
 
-        public void EnterText(By Locator, string Value)
+        public void EnterText(By Locator, string Value, string LocatorName)
         {
             try
             {
                 Thread.Sleep(1000);
                 setValueToObject(Locator, Value, 60);
+                ExtentReport.ReportPass("The Value <b>" + Value + "</b> Entered in Locator <b>" + LocatorName + "</b> Successfully");
             }
             catch (Exception e)
             {
-                TakeScreenShot();
+                //TakeScreenShot();
+                ExtentReport.ReportFail("The Value <b>" + Value + "</b> Entered in Locator <b>" + LocatorName + "</b> Failed : " + e.Message);
                 throw new Exception("Error Occured in Entering Text " + e.Message);
             }
         }
-        
+
         public void EnterTab(By Locator)
         {
             driver.FindElement(Locator).SendKeys(Keys.Tab);
@@ -300,6 +305,24 @@ namespace EquipmentReturn.Automation.Accelerators
             return flag;
         }
 
+        public bool Verifydropdownselectedtext(By locator, string expectedoptionvalue)
+        {
+            bool flag = false;
+            IWebElement inputcomboBox = driver.FindElement(locator);
+            SelectElement selectedValue = new SelectElement(inputcomboBox);
+            string selectedoptionvalue = selectedValue.SelectedOption.Text;
+            if (selectedoptionvalue == expectedoptionvalue)
+            {
+                flag = true;
+            }
+            else
+            {
+                flag = false;
+            }
+
+            return flag;
+        }
+
         public bool VerifyByAttributeValue(By locator, string attribute, string value)
         {
             bool flag = false;
@@ -313,7 +336,7 @@ namespace EquipmentReturn.Automation.Accelerators
                 else
                 {
                     flag = false;
-                }                
+                }
             }
             catch (Exception e)
             {
@@ -352,10 +375,13 @@ namespace EquipmentReturn.Automation.Accelerators
                 {
                     value = driver.FindElement(lookupBy).GetAttribute("value");
                 }
+
+                ExtentReport.ReportPass(" The value <b>" + value + "</b> fetching is success from Locator <b>" + locatorName + "</b>");
             }
             catch (Exception ex)
             {
-                TakeScreenShot();
+                //TakeScreenShot();
+                ExtentReport.ReportFail(" The value <b>" + value + "</b> fetching is failed from Locator <b>" + locatorName + "</b> : " + ex.Message);
                 throw new Exception("Unable to get Text from " + locatorName + "<br />" + ex.Message);
             }
             return value;
@@ -573,7 +599,7 @@ namespace EquipmentReturn.Automation.Accelerators
             return flag;
 
         }
-                
+
         public bool isEnabled(By locator, string locatorName)
         {
             bool? value = false;
@@ -1182,16 +1208,18 @@ namespace EquipmentReturn.Automation.Accelerators
             {
                 WebElement ele = wait.Until(ExpectedConditions.ElementIsVisible(lookupBy));
                 flag = true;
+                ExtentReport.ReportPass("The element is visible before <b>" + timeout + "</b> seconds");
             }
             catch (Exception ex)
             {
                 try
                 {
-                    TakeScreenShot();
+                    //TakeScreenShot();
+                    ExtentReport.ReportFail("The element is not visible :<b>" + ex.Message + "</b>");
                     //Assert.Fail(lookupBy + " is not visible for " + timeout + " seconds." + " with message :" + ex.Message);
                     flag = false;
                 }
-                catch(Exception ex1)
+                catch (Exception ex1)
                 {
                     //Assert.Fail("Failed to take screenshot: " + ex1.ToString());
                 }
@@ -1292,8 +1320,8 @@ namespace EquipmentReturn.Automation.Accelerators
             {
                 element = waitForElementVisible(lookupBy, maxWaitTime);
                 if (element != null)
-                {                    
-                    element.Clear();                                      
+                {
+                    element.Clear();
                     element.SendKeys(strInputValue);
                 }
             }

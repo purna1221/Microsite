@@ -163,6 +163,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutomationFlowTest\TC011_WhenAutomationCreatesRITM.cs" />
+    <Compile Include="AutomationFlowTest\TC012_IdentifiedEmployeeSubmitsFirstRequest.cs" />
+    <Compile Include="AutomationFlowTest\TC013_UnidentifiedEmployeeSubmits.cs" />
+    <Compile Include="AutomationFlowTest\TC014_ReturnTypeUpdated.cs" />
+    <Compile Include="AutomationFlowTest\TC015_AppointmentDateORTimeUpdated.cs" />
     <Compile Include="RegressionTest\TC007_EndToEndFlowwithFedExShipping.cs" />
     <Compile Include="RegressionTest\TC006_EndToEndFlowwithReturnInPerson.cs" />
     <Compile Include="RegressionTest\TC008_VerifyRequiredFieldValidator.cs" />
@@ -181,7 +186,9 @@
     <None Include="LocalTestConfig.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="TestData\EquipmentReturn.xlsx" />
   </ItemGroup>
   <ItemGroup>
@@ -198,9 +205,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="extent-config.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="XML.resx">
       <DependentUpon>XML.cs</DependentUpon>
     </EmbeddedResource>
@@ -209,22 +213,18 @@
     <Folder Include="Result\FailResultslist\" />
     <Folder Include="Result\Playlists\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="chromedriver.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="extent-config.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>wmic process where name='chromedriver.exe' delete</PreBuildEvent>
   </PropertyGroup>
-  <Import Project="..\packages\NuGet.VisualStudio.4.9.4\build\NuGet.VisualStudio.targets" Condition="Exists('..\packages\NuGet.VisualStudio.4.9.4\build\NuGet.VisualStudio.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\NuGet.VisualStudio.4.9.4\build\NuGet.VisualStudio.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NuGet.VisualStudio.4.9.4\build\NuGet.VisualStudio.targets'))" />
-    <Error Condition="!Exists('..\packages\NUnit3TestAdapter.3.13.0\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.3.13.0\build\net35\NUnit3TestAdapter.props'))" />
-    <Error Condition="!Exists('..\packages\Selenium.Chrome.WebDriver.2.45\build\Selenium.Chrome.WebDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.Chrome.WebDriver.2.45\build\Selenium.Chrome.WebDriver.targets'))" />
-    <Error Condition="!Exists('..\packages\Selenium.WebDriver.ChromeDriver.84.0.4147.3001\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.ChromeDriver.84.0.4147.3001\build\Selenium.WebDriver.ChromeDriver.targets'))" />
-  </Target>
   <Import Project="..\packages\Selenium.Chrome.WebDriver.2.45\build\Selenium.Chrome.WebDriver.targets" Condition="Exists('..\packages\Selenium.Chrome.WebDriver.2.45\build\Selenium.Chrome.WebDriver.targets')" />
-  <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.84.0.4147.3001\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.84.0.4147.3001\build\Selenium.WebDriver.ChromeDriver.targets')" />
+  <Import Project="..\packages\Selenium.Chrome.WebDriver.85.0.0\build\Selenium.Chrome.WebDriver.targets" Condition="Exists('..\packages\Selenium.Chrome.WebDriver.85.0.0\build\Selenium.Chrome.WebDriver.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
@@ -232,4 +232,16 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Selenium.WebDriver.ChromeDriver.86.0.4240.2200\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.ChromeDriver.86.0.4240.2200\build\Selenium.WebDriver.ChromeDriver.targets'))" />
+    <Error Condition="!Exists('..\packages\NuGet.VisualStudio.4.9.4\build\NuGet.VisualStudio.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NuGet.VisualStudio.4.9.4\build\NuGet.VisualStudio.targets'))" />
+    <Error Condition="!Exists('..\packages\NUnit3TestAdapter.3.13.0\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.3.13.0\build\net35\NUnit3TestAdapter.props'))" />
+    <Error Condition="!Exists('..\packages\Selenium.WebDriver.ChromeDriver.87.0.4280.2000\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.ChromeDriver.87.0.4280.2000\build\Selenium.WebDriver.ChromeDriver.targets'))" />
+  </Target>
+  <Import Project="..\packages\NuGet.VisualStudio.4.9.4\build\NuGet.VisualStudio.targets" Condition="Exists('..\packages\NuGet.VisualStudio.4.9.4\build\NuGet.VisualStudio.targets')" />
+  <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.87.0.4280.2000\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.87.0.4280.2000\build\Selenium.WebDriver.ChromeDriver.targets')" />
 </Project>

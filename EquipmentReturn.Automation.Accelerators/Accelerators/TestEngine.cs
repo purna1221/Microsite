@@ -26,8 +26,7 @@ namespace EquipmentReturn.Automation.Accelerators
         //public string browser = null;
         //public string device = null;
         public string environment = null;
-        public string browserstack_user = string.Empty;
-        public string browserstack_key = string.Empty;
+       
         public string devicenamelocal = string.Empty;
         public string devicenameBS = string.Empty;
         public string devicenameiphone = string.Empty;
@@ -43,6 +42,9 @@ namespace EquipmentReturn.Automation.Accelerators
 
         public static string isNonProd = ConfigurationManager.AppSettings["isNonProd"];
         public static string isProd = ConfigurationManager.AppSettings["isProd"];
+
+        public static string browserstack_user = ConfigurationManager.AppSettings["browserstackuser"];
+        public static string browserstack_key = ConfigurationManager.AppSettings["browserstackkey"];
 
 
         //EquipmentReturn URL of all environments
@@ -98,10 +100,10 @@ namespace EquipmentReturn.Automation.Accelerators
             DebugLocalMobile(strMobileDevice);
             DebugLocalChrome();
 
-            driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(180));
+            //driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(180));
             VerifyPageIsLoaded();
             driver.Navigate().GoToUrl(WebuiURL);
-
+            ExtentReport.ReportPass("Successfully navigated to URL " + WebuiURL);
             // Update Env build and browser in DB
             ResultDbHelper _result = new ResultDbHelper();
             //_result.UpdateEnvdetails(Env, Browser, "");
@@ -187,7 +189,7 @@ namespace EquipmentReturn.Automation.Accelerators
                 chrOpts.AddUserProfilePreference("download.prompt_for_download", ConfigurationManager.AppSettings["ShowBrowserDownloadPrompt"]);
                 driver = new ChromeDriver(chrOpts);
                 driver.Manage().Window.Maximize();
-                driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(Convert.ToInt32(ConfigurationManager.AppSettings.Get("ElementPageLoad"))));
+                //driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(Convert.ToInt32(ConfigurationManager.AppSettings.Get("ElementPageLoad"))));
                 ExtentReport.StartTest(TestContext.CurrentContext.Test.Name);
 
             }
@@ -415,11 +417,14 @@ namespace EquipmentReturn.Automation.Accelerators
             //desiredCap.SetCapability(ChromeOptions.Capability, chrOpts);    // updated                   
             desiredCap = (DesiredCapabilities)chrOpts.ToCapabilities();
 
+
+            desiredCap.SetCapability("os", "Windows");
+            desiredCap.SetCapability("os_version", "10");
+            desiredCap.SetCapability("browser", "Chrome");
+            desiredCap.SetCapability("browser_version", "81");
             desiredCap.SetCapability("browserstack.user", browserstack_user);
             desiredCap.SetCapability("browserstack.key", browserstack_key);
-            desiredCap.SetCapability("platform", "WINDOWS");
-            desiredCap.SetCapability("os", "WINDOWS");
-            desiredCap.SetCapability("os_version", "8");
+            
             // desiredCap.SetCapability("build", Environment.GetEnvironmentVariable("BS_AUTOMATE_BUILD"));
             desiredCap.SetCapability("browserstack.debug", true);
             // string strTestName = TestContext.CurrentContext.Test.Name.ToString();
